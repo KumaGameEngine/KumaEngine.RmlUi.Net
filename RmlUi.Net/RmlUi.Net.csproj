@@ -12,14 +12,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Title>RmlUi.Net</Title>
-    <Product>RmlUi.Net</Product>
-    <PackageId>RmlUi.Net</PackageId>
-    <Authors>Chorizite</Authors>
-    <Company>Chorizite</Company>
+    <Title>KumaEngine.RmlUi.Net</Title>
+    <Product>KumaEngine.RmlUi.Net</Product>
+    <PackageId>KumaEngine.RmlUi.Net</PackageId>
+    <Authors>KumaEngine</Authors>
+    <Company>KumaEngine</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>C# bindings for rmlui.net</Description>
-    <RepositoryUrl>https://github.com/Chorizite/RmlUI.Net</RepositoryUrl>
+    <RepositoryUrl>https://github.com/KumaGameEngine/KumaEngine.RmlUi.Net</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -45,7 +45,13 @@
 
   <PropertyGroup>
     <NoWarn>1701;1702;CS1591</NoWarn>
+    <PackageTags>ui, rml, html</PackageTags>
+    <PackageIcon>icon_128.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="NugetResources\icon_128.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="README.md">
@@ -69,6 +75,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="NugetResources\icon_128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
   </ItemGroup>
 
 </Project>
