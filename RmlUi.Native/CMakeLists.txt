@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.14...3.23)
 
 project(RmlUiNative VERSION 1.0 LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # Configure output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/${DCMAKE_GENERATOR_PLATFORM})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -17,13 +20,16 @@ if(WIN32)
         set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     endif()
 elseif(LINUX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -I. -Wall -Werror")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -I. -Wall")
 endif()
 
 # Add external libraries
 add_subdirectory("ext/freetype")
-set(FREETYPE_LIBRARY "${CMAKE_CURRENT_SOURCE_DIR}/build/lib/Debug/freetyped.lib")
-set(FREETYPE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/ext/freetype/include")
+
+# RmlUi looks for Freetype::Freetype (see the error message), so give it an alias
+if(NOT TARGET Freetype::Freetype)
+    add_library(Freetype::Freetype ALIAS freetype)
+endif()
 
 set(BUILD_SHARED_LIBS OFF)
 add_subdirectory("ext/RmlUi")
@@ -81,6 +87,6 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 # Apply Windows linker options cleanly to our target only
-if(WIN32)
+if(MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS" "/DEBUG:FASTLINK")
 endif()

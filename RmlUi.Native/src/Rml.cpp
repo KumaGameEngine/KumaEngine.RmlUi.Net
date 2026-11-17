@@ -74,3 +74,7 @@ RMLUI_CAPI void rml_UpdateString(std::string* str, const char* new_value) {
 RMLUI_CAPI void rml_FreeString(std::string* str) {
         dataModelPool.erase(str);
 }
+
+RMLUI_CAPI void rml_FreeCString(const char* str) {
+    free(const_cast<char*>(str));
+}

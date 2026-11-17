@@ -22,7 +22,7 @@ namespace RmlUiNet
             if (strPtr == IntPtr.Zero) return defaultValue;
 
             var strValue = Marshal.PtrToStringAnsi(strPtr);
-            Marshal.FreeHGlobal(strPtr);
+            Native.Rml.FreeCString(strPtr);
             return strValue ?? defaultValue;
         }
     }

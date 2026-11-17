@@ -12,7 +12,7 @@ namespace RmlUiNet {
         public virtual string GetString(string property, string defaultValue="") {
             var strPtr = RmlUiNet.Native.XMLAttributes.GetString(NativePtr, property, defaultValue);
             var strValue = Marshal.PtrToStringAnsi(strPtr);
-            Marshal.FreeHGlobal(strPtr);
+            Native.Rml.FreeCString(strPtr);
             return strValue;
         }
     }

@@ -396,7 +396,7 @@ namespace RmlUiNet
         {
             var strPtr = Native.Element.GetInnerRml(NativePtr);
             var strValue = Marshal.PtrToStringAnsi(strPtr);
-            Marshal.FreeHGlobal(strPtr);
+            Native.Rml.FreeCString(strPtr);
             return strValue ?? "";
         }
 
@@ -474,7 +474,7 @@ namespace RmlUiNet
             if (strPtr == IntPtr.Zero) return "";
 
             var strValue = Marshal.PtrToStringAnsi(strPtr);
-            Marshal.FreeHGlobal(strPtr);
+            Native.Rml.FreeCString(strPtr);
             return strValue ?? "";
         }
 
@@ -493,7 +493,7 @@ namespace RmlUiNet
             if (strPtr == IntPtr.Zero) return "";
 
             var strValue = Marshal.PtrToStringAnsi(strPtr);
-            Marshal.FreeHGlobal(strPtr);
+            Native.Rml.FreeCString(strPtr);
             return strValue ?? "";
         }
 
